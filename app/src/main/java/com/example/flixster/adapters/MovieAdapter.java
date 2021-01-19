@@ -13,13 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.flixster.R;
-import com.example.flixster.models.Movie;
+import com.example.flixster.modules.Movie;
 
 import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
-    Context context;
-    List<Movie> movies;
+    final Context context;
+    final List<Movie> movies;
 
     public MovieAdapter(Context context, List<Movie> movies) {
         this.context = context;
@@ -51,9 +51,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView tvTitle;
-        TextView tvOverview;
-        ImageView ivPoster;
+        final TextView tvTitle;
+        final TextView tvOverview;
+        final ImageView ivPoster;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -65,6 +65,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         public void bind(Movie movie) {
             tvTitle.setText(movie.getTitle());
             tvOverview.setText(movie.getOverview());
+            ivPoster.setImageResource(R.drawable.film_clip);
             String imageUrl;
             // If phone is in Landscape mode
             // imageUrl = backdropPath
@@ -74,7 +75,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
             }  else {
                 imageUrl = movie.getPosterPath();
             }
-            Glide.with(context).load(imageUrl).into(ivPoster);
+            // Load image from image Url, if it takes too long, use the placeholder image
+            Glide.with(context).load(imageUrl).placeholder(R.drawable.film_clip).into(ivPoster);
         }
     }
 }

@@ -2,16 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/RelativeLayout"
+    android:id="@+id/rLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@android:color/background_dark"
+    android:paddingBottom="5dp">
 
     <ImageView
         android:id="@+id/ivPoster"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="5dp"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -20,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/ivPoster"
+        android:textColor="@android:color/primary_text_dark"
         android:textSize="24sp"
         tools:text="Wonder Woman 1984" />
 
@@ -31,5 +34,6 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/ivPoster"
+        android:textColor="@android:color/primary_text_dark"
         tools:text="Wonder Woman comes into conflict with the Soviet Union during the Cold War in the 1980s and finds a formidable foe by the name of the Cheetah." />
 </RelativeLayout>

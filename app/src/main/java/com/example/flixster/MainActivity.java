@@ -4,15 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.ViewGroup;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.flixster.adapters.MovieAdapter;
-import com.example.flixster.models.Movie;
+import com.example.flixster.modules.Movie;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -69,5 +67,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onFailure");
             }
         });
+
     }
 }
