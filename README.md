@@ -32,8 +32,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='Flixster.mp4' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-<a href="Flixster.mp4">Link to Video Sample</a
+<img src='Flixster.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 ## Notes
 
