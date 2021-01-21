@@ -1,4 +1,4 @@
-package com.example.flixster.modules;
+package com.example.flixster.model;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -12,6 +12,8 @@ public class Movie {
     String posterPath;
     String title;
     String overview;
+    Double vote_avg;
+    String movie_id;
 
 
     public Movie(JSONObject jsonObject) throws JSONException {
@@ -19,6 +21,9 @@ public class Movie {
         backdropPath = jsonObject.getString("backdrop_path");
         title = jsonObject.getString("title");
         overview = jsonObject.getString("overview");
+        //vote_avg = String.format("%.0f", (jsonObject.getDouble("vote_average")*10))+"%";
+        vote_avg = jsonObject.getDouble("vote_average");
+        movie_id = jsonObject.getString("id");
     }
     public static List<Movie> fromJsonArray(JSONArray movieJsonArray) throws JSONException {
         List<Movie> movies = new ArrayList<>();
@@ -43,4 +48,8 @@ public class Movie {
     public String getOverview() {
         return overview;
     }
+
+    public Double getRating() { return vote_avg; }
+
+    public String getMovie_id(){ return movie_id; }
 }

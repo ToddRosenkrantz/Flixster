@@ -10,7 +10,7 @@ import android.util.Log;
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.example.flixster.adapters.MovieAdapter;
-import com.example.flixster.modules.Movie;
+import com.example.flixster.model.Movie;
 
 import org.json.JSONArray;
 import org.json.JSONException;
