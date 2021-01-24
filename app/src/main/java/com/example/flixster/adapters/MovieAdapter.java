@@ -1,20 +1,25 @@
 package com.example.flixster.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.flixster.DetailActivity;
 import com.example.flixster.R;
-import com.example.flixster.model.Movie;
+import com.example.flixster.models.Movie;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 import java.util.Locale;
@@ -51,20 +56,31 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
         return movies.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-
+    // class *cannot* be static
+    // implements View.onClickListener
+     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        RelativeLayout container;
         final TextView tvTitle;
         final TextView tvOverview;
         final TextView tvRating;
         final ImageView ivPoster;
-        String movie_id;
+        int movie_id;
+//        itemView.setOnClickListener(this);
+
+        @Override
+        public void onClick(View v) {
+        }
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvTitle = itemView.findViewById(R.id.tvTitle);
-            tvOverview = itemView.findViewById(R.id.tvOverview);
+            tvTitle = itemView.findViewById(R.id.tvItemTitle);
+            tvOverview = itemView.findViewById(R.id.tvItemOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
-            tvRating = itemView.findViewById(R.id.tvRating);
+            container = itemView.findViewById(R.id.container);
+
+            tvRating = itemView.findViewById(R.id.tvItemRating);
+//            ivPrimaryImage = (ImageView) itemView.findViewById(R.id.ivPrimaryImage);
         }
 
         public void bind(Movie movie) {
@@ -111,6 +127,23 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
             }
             // Load image from image Url, if it takes too long, use the placeholder image
             Glide.with(context).load(imageUrl).placeholder(R.drawable.film_clip).into(ivPoster);
+            container.setOnClickListener(v -> {
+                // gets adapter position
+                int position = getAdapterPosition();
+                // validate position
+                if (position != RecyclerView.NO_POSITION) {
+                    // get the movie at the position, DOESN'T work if class is static
+//                        Movie movie = movies.get(position);
+                    // create intent for the new activity
+                    Intent i = new Intent(context, DetailActivity.class);
+                    // serialize the movie using parceler, use its short name as a key
+                    i.putExtra("movie", Parcels.wrap(movie));
+                    // show the activity
+                    context.startActivity(i);
+
+//                        Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     }
 }

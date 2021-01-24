@@ -28,6 +28,10 @@ The following **additional** features are implemented:
 
 * [X] Added rating with colors to indicate "hotness"
 
+The following **additional improvments** for future updates:
+* [ ] Use a scrollview and controls to eliminate the toolbar on scroll.
+* [ ] Implement latest method to create AppIcon for current OS versions.
+
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:

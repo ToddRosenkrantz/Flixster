@@ -2,4 +2,5 @@
     <string name="app_name">Flixster</string>
     <string name="backdrop_image">backdrop image</string>
     <string name="poster_image">poster image</string>
+    <string name="YOUTUBE_API_KEY">AIzaSyAHmbZ1DcoFXB6ZhVipnJG16uh7qvgUYkM</string>
 </resources>
