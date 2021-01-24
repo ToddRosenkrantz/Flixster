@@ -36,7 +36,7 @@ The following **additional improvments** for future updates:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='./Flixster.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='Flixster_1.gif' title='Video Walkthrough' alt='Video Walkthrough' />
 
 ## Notes
 
