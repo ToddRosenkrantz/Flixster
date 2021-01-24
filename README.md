@@ -27,6 +27,7 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 * [X] Added rating with colors to indicate "hotness"
+* [X] Modified code and build files to prevent uploading API keys to github.
 
 The following **additional improvments** for future updates:
 * [ ] Use a scrollview and controls to eliminate the toolbar on scroll.

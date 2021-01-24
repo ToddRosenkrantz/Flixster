@@ -2,10 +2,16 @@ plugins {
     id 'com.android.application'
 }
 
+def securePropertiesFile = rootProject.file("secure.properties")
+def secureProperties = new Properties()
+secureProperties.load(new FileInputStream(securePropertiesFile))
+
 android {
     compileSdkVersion 28
 
     defaultConfig {
+        buildConfigField "String", "YOUTUBE_API_KEY", secureProperties['youtubeKey']
+        buildConfigField "String", "TMDB_KEY", secureProperties['tmdbKey']
         applicationId "com.example.flixster"
         minSdkVersion 22
         targetSdkVersion 28
