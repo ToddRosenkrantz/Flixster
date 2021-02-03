@@ -22,6 +22,9 @@ import org.parceler.Parcels;
 
 import okhttp3.Headers;
 
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
 public class DetailActivity extends YouTubeBaseActivity {
 
     private static final String YOUTUBE_API_KEY = BuildConfig.YOUTUBE_API_KEY;
@@ -54,13 +57,15 @@ public class DetailActivity extends YouTubeBaseActivity {
             @Override
             public void onSuccess(int i, Headers headers, JSON json) {
                 try {
+                    boolean playFlag =FALSE;
+                    if(movie.getRating() >= 7) playFlag = TRUE;
                     JSONArray results = json.jsonObject.getJSONArray("results");
                     if (results.length() == 0) {
                         return;
                     }
                     String youtubeKey = results.getJSONObject(0).getString("key");
                     Log.d("DetailActivity","youtubeKey: " + youtubeKey);
-                    initializeYouTube(youtubeKey);
+                    initializeYouTube(youtubeKey, playFlag);
                 } catch (JSONException e) {
                     Log.e("DetailActivity","Failed to parse JSON", e);
                     e.printStackTrace();
@@ -75,7 +80,7 @@ public class DetailActivity extends YouTubeBaseActivity {
 
     }
 
-    private void initializeYouTube(String youtubeKey) {
+    private void initializeYouTube(String youtubeKey, boolean playflag) {
 
         youTubePlayerView.initialize(YOUTUBE_API_KEY, new YouTubePlayer.OnInitializedListener() {
             @Override
@@ -83,7 +88,13 @@ public class DetailActivity extends YouTubeBaseActivity {
                 Log.d("DetailActifvity", "onInitializationSuccess");
 
                 // do any work here to cue video, play video, etc.
-                youTubePlayer.cueVideo(youtubeKey);
+                youTubePlayer.setShowFullscreenButton(TRUE);
+                if (playflag) {
+//                    youTubePlayer.setFullscreen(TRUE);
+                    youTubePlayer.loadVideo(youtubeKey);
+                }
+                else youTubePlayer.cueVideo(youtubeKey);
+
             }
 
             @Override

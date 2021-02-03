@@ -1,5 +1,6 @@
 package com.example.flixster.adapters;
 
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -12,9 +13,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.flixster.DetailActivity;
 import com.example.flixster.R;
 import com.example.flixster.models.Movie;
@@ -23,6 +27,8 @@ import org.parceler.Parcels;
 
 import java.util.List;
 import java.util.Locale;
+
+import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
     final Context context;
@@ -87,6 +93,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
             movie_id = movie.getMovie_id();
             tvTitle.setText(movie.getTitle());
             tvOverview.setText(movie.getOverview());
+            int radius = 20;
+            int margin = 0;
             double vote_avg = movie.getRating()*10;
             String rating = String.format(Locale.US,"%.0f", vote_avg)+"%";
             tvRating.setText(rating);
@@ -126,7 +134,11 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
                 imageUrl = movie.getPosterPath();
             }
             // Load image from image Url, if it takes too long, use the placeholder image
-            Glide.with(context).load(imageUrl).placeholder(R.drawable.film_clip).into(ivPoster);
+            Glide.with(context)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.film_clip)
+                    .transform(new RoundedCornersTransformation(radius,margin))
+                    .into(ivPoster);
             container.setOnClickListener(v -> {
                 // gets adapter position
                 int position = getAdapterPosition();
@@ -136,7 +148,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
 //                        Movie movie = movies.get(position);
                     // create intent for the new activity
                     Intent i = new Intent(context, DetailActivity.class);
-                    // serialize the movie using parceler, use its short name as a key
                     i.putExtra("movie", Parcels.wrap(movie));
                     // show the activity
                     context.startActivity(i);

@@ -30,7 +30,9 @@
         android:layout_gravity="center|center_horizontal"
         android:isIndicator="true"
         android:numStars="5"
+        android:progressBackgroundTint="#AEA4A4"
         android:progressTint="#FFC107"
+        android:progressTintMode="src_atop"
         android:rating="2.7"
         android:stepSize="0.1" />
 
