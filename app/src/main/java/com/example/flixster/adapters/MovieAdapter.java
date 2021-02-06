@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +16,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.flixster.DetailActivity;
+import com.example.flixster.MainActivity;
 import com.example.flixster.R;
 import com.example.flixster.models.Movie;
 
@@ -52,6 +55,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         // Get the movie at the passed in position
         Movie movie = movies.get(position);
+        // Set Transition name to unique movie title
+        ViewCompat.setTransitionName(holder.ivPoster, movie.getTitle());
         // Bind the movie data into the ViewHolder (populate the row data into the display 'card')
         holder.bind(movie);
     }
@@ -150,7 +155,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>{
                     Intent i = new Intent(context, DetailActivity.class);
                     i.putExtra("movie", Parcels.wrap(movie));
                     // show the activity
-                    context.startActivity(i);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//                        ActivityOptionsCompat options = ActivityOptionsCompat.
+//                                makeSceneTransitionAnimation(this, ivPoster, "poster");
+//                        startActivity(intent, options.toBundle());
+//                        context.startActivity(i,options.toBundle());
+                        context.startActivity(i);
+                    }
+                    else {
+//                        startActivity(intent);
+                        context.startActivity(i);
+                    }
+
 
 //                        Toast.makeText(context, movie.getTitle(), Toast.LENGTH_SHORT).show();
                 }

@@ -22,6 +22,7 @@ CodePath Flixster Project
 **********************************************
 - [X] Modified Lanscape Detail view to be scrollable.  This allows the overview to be seen if it extends below the screen.
 - [X] Changed Ratings bar to have outline of 'missing' stars and changed the draw method to prevent odd colors due to old method.
+- [X] Removed Status Bar on Detail screen to enhance video playback
 
 ### App Walkthough GIF
 
@@ -32,6 +33,7 @@ CodePath Flixster Project
 ### Notes
 
 Describe any challenges encountered while building the app.
+Unable to find current source that discusses Shared Element Transitition with RecyclerView
 
 ## Open-source libraries used
 - [Android Async HTTP](https://github.com/codepath/CPAsyncHttpClient) - Simple asynchronous HTTP requests with JSON parsing
