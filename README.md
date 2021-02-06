@@ -1,6 +1,6 @@
 # Flixster
 CodePath Flixster Project
-## Flix Part 2
+## Flixster Part 2
 
 ### User Stories
 
@@ -26,7 +26,6 @@ CodePath Flixster Project
 
 ### App Walkthough GIF
 
-`TODO://` Add the URL to your animated app walkthough `gif` in the image tag below, `YOUR_GIF_URL_HERE`. Make sure the gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after after adding gif)
 
 <img src='Flixster_2.gif' width=250><br>
 
